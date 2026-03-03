@@ -57,7 +57,7 @@ pytest
 ## Project structure
 
 ```
-Legion/
+Legion_Scout/
 ├── pytest.ini               # Test configuration and custom markers
 ├── requirements.txt
 └── src/
