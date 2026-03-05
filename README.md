@@ -41,17 +41,12 @@ This does NOT subvert or avoid paying Anthropic in any way. This requires a PAID
 
 Unit tests only (fast, no CLI calls):
 ```bash
-pytest -m "not integration"
+pytest
 ```
 
-Integration tests (hits the real Claude CLI, slow):
+Integration tests (hits the real Claude CLI and Tavily, slow — run from outside Claude Code):
 ```bash
 pytest -m integration
-```
-
-All tests:
-```bash
-pytest
 ```
 
 ## Project structure
@@ -67,9 +62,14 @@ Legion_Scout/
     │   └── critiquer.py     # Critique agent
     ├── core/
     │   └── client.py        # Subprocess wrapper for Claude CLI
+    ├── tools/
+    │   ├── search.py        # Provider-agnostic search interface
+    │   └── tavily.py        # Tavily implementation
     └── tests/
         ├── test_researcher.py
         ├── test_critiquer.py
+        ├── test_search.py
+        ├── test_tavily.py
         └── test_integration.py
 ```
 
@@ -78,8 +78,15 @@ Legion_Scout/
 ```
 pytest
 pytest-mock
+python-dotenv
+tavily-python
 ```
 
-Requires Claude Code to be installed and authenticated.
+Requires Claude Code to be installed and authenticated. Requires a Tavily API key set in a `.env` file:
+
+```
+TAVILY_API_KEY=your-key-here
+SEARCH_PROVIDER=tavily
+```
 
 **Platform:** Designed to run in Linux or WSL. Running directly in Windows is untested and will likely fail due to how the Claude CLI is invoked via subprocess.

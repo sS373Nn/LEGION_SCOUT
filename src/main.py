@@ -1,4 +1,7 @@
 import sys
+from dotenv import load_dotenv
+load_dotenv()
+
 from agents.researcher import research
 from agents.critiquer import critique
 

@@ -1,6 +1,9 @@
 import pytest
+from dotenv import load_dotenv
 from agents.researcher import research
 from agents.critiquer import critique
+
+load_dotenv()
 
 # Integration tests hit the real Claude CLI. Run explicitly with: pytest -m integration
 pytestmark = pytest.mark.integration

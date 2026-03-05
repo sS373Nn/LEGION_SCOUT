@@ -13,5 +13,5 @@ def query(prompt: str) -> str:
         env=env
     )
     if result.returncode != 0:
-        raise RuntimeError(f"Claude CLI error: {result.stderr}")
+        raise RuntimeError(f"Claude CLI error:\nSTDERR: {result.stderr}\nSTDOUT: {result.stdout}")
     return result.stdout.strip()
