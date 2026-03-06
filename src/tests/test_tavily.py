@@ -42,5 +42,5 @@ def test_search_calls_tavily_with_query():
             mock_instance.search.return_value = FAKE_RESPONSE
             search("what is photosynthesis")
             mock_instance.search.assert_called_once_with(
-                query="what is photosynthesis", search_depth="advanced"
+                query="what is photosynthesis", search_depth="advanced", max_results=3
             )

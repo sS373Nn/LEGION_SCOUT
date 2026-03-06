@@ -11,8 +11,7 @@ The goal is honest analysis, not validation.
 ## Usage
 
 ```bash
-cd src
-python3 main.py "your question here"
+python3 src/main.py "your question here"
 ```
 
 ## Architecture
@@ -38,6 +37,8 @@ If you want to swap to the SDK later, the change is isolated to `src/core/client
 This does NOT subvert or avoid paying Anthropic in any way. This requires a PAID subscription to Claude Code to work, but avoids the API pay-per-token usually associated with programs such as this. I'm a broke college grad. I can't afford an API on top of a Claude Subscription.
 
 ## Running tests
+
+Run from the `LEGION_SCOUT/` root after installing dependencies.
 
 Unit tests only (fast, no CLI calls):
 ```bash
@@ -82,11 +83,21 @@ python-dotenv
 tavily-python
 ```
 
-Requires Claude Code to be installed and authenticated. Requires a Tavily API key set in a `.env` file:
+Install with:
+```bash
+pip install -r requirements.txt
+```
+
+Requires Claude Code to be installed and authenticated. Requires a Tavily API key set in a `.env` file in the `LEGION_SCOUT/` root:
 
 ```
-TAVILY_API_KEY=your-key-here
+# Required
+TAVILY_API_KEY=tvly-xxxxxxxxxxxxxxxxxxxx
 SEARCH_PROVIDER=tavily
+
+# Do NOT add ANTHROPIC_API_KEY here.
+# If present, claude -p will route calls to the pay-per-token API
+# instead of your Claude Code subscription and fail with a credit error.
 ```
 
 **Platform:** Designed to run in Linux or WSL. Running directly in Windows is untested and will likely fail due to how the Claude CLI is invoked via subprocess.

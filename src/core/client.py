@@ -5,6 +5,7 @@ import subprocess
 def query(prompt: str) -> str:
     env = os.environ.copy()
     env.pop("CLAUDECODE", None)
+    env.pop("ANTHROPIC_API_KEY", None)
 
     result = subprocess.run(
         ["claude", "-p", prompt],
@@ -12,6 +13,7 @@ def query(prompt: str) -> str:
         text=True,
         env=env
     )
+
     if result.returncode != 0:
         raise RuntimeError(f"Claude CLI error:\nSTDERR: {result.stderr}\nSTDOUT: {result.stdout}")
     return result.stdout.strip()
